@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios  from "axios";
-import { URL,config } from "../../../config/constants";
+import { URL,config ,createAxiosConfig} from "../../../config/constants";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
@@ -10,12 +10,12 @@ export const axiosIn = axios.create({
   });
 
 
-  export const adminAddCourseAction= createAsyncThunk(
-    "admin/Course",
+  export const adminAddProjectAction= createAsyncThunk(
+    "admin/Project",
     async (Datas:FormData,{rejectWithValue})=>{
         try {
-            console.log("this  for Course ",Datas);
-            const response = await axiosIn.post(`/admin/addCourse`, Datas,config);
+            console.log("this  for Project ",Datas);
+            const response = await axiosIn.post(`/admin/add-project`, Datas,createAxiosConfig(true));
             return response.data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } catch (error: any) {
@@ -28,11 +28,11 @@ export const axiosIn = axios.create({
   )
 
 
-    export const adminGetCourses= createAsyncThunk(
-      "admin/adminGetCourse",
+    export const adminGetProjects= createAsyncThunk(
+      "admin/adminGetProject",
       async (_,{rejectWithValue})=>{
           try {
-              const response = await axiosIn.get(`/admin/getCourseAdmin`,config);
+              const response = await axiosIn.get(`/admin/getProjects`,config);
               return response.data;
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
@@ -43,11 +43,11 @@ export const axiosIn = axios.create({
             }
       }
     )
-    export const adminGetCourseById= createAsyncThunk(
-      "admin/getCourseById",
+    export const adminGetProjectById= createAsyncThunk(
+      "admin/getProjectById",
       async (id:string,{rejectWithValue})=>{
           try {
-              const response = await axiosIn.get(`/admin/getCourseByIdAdmin/${id}`,config);
+              const response = await axiosIn.get(`/admin/getProjectByIdAdmin/${id}`,config);
               return response.data;
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
@@ -58,11 +58,12 @@ export const axiosIn = axios.create({
             }
       }
     ) 
-    export const adminCourseChangeStatus= createAsyncThunk(
-      "admin/adminCourseChangeStatus", 
+    
+    export const adminDeleteProjectById= createAsyncThunk(
+      "admin/deleteProjectById",
       async (id:string,{rejectWithValue})=>{
           try {
-              const response = await axiosIn.patch(`/admin/status/${id}`,config);
+              const response = await axiosIn.delete(`/admin/DeleteProjectByIdAdmin/${id}`,config);
               return response.data;
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
@@ -72,12 +73,13 @@ export const axiosIn = axios.create({
               return rejectWithValue({ message: "Something went wrong!" });
             }
       }
-    )
-    export const adminUpdateCourse= createAsyncThunk(
-      "admin/adminUpdateCourse",
+    ) 
+
+    export const adminUpdateProject= createAsyncThunk(
+      "admin/adminUpdateProject",
       async ( { id, data }:{ id: any; data: FormData  },{rejectWithValue})=>{
           try {
-              const response = await axiosIn.put(`/admin/updateCourse/${id}`, data,config);
+              const response = await axiosIn.put(`/admin/updateProject/${id}`, data,config);
               return response.data; 
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {

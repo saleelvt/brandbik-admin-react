@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice } from "@reduxjs/toolkit";
-import { adminAddCourseAction } from "../../actions/admin/courseActions";
+import { adminAddProjectAction } from "../../actions/admin/projectActions";
 
 export interface CourseState {
   courseData: any | null;
@@ -18,7 +18,7 @@ const initialState: CourseState = {
   message: null,
 };
 
-export const courseSlice = createSlice({
+export const projectSlice = createSlice({
   name: "course",
   initialState,
   reducers: {
@@ -38,12 +38,12 @@ export const courseSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(adminAddCourseAction.pending, (state) => {
+      .addCase(adminAddProjectAction.pending, (state) => {
         state.loading = true;
         state.error = null;
         state.message = null;
       })
-      .addCase(adminAddCourseAction.fulfilled, (state, { payload }) => {
+      .addCase(adminAddProjectAction.fulfilled, (state, { payload }) => {
         console.log("Course creation payload:", payload);
         state.loading = false;
         state.error = null;
@@ -54,7 +54,7 @@ export const courseSlice = createSlice({
           state.courses.push(payload.course);
         }
       })
-      .addCase(adminAddCourseAction.rejected, (state, { payload }) => {
+      .addCase(adminAddProjectAction.rejected, (state, { payload }) => {
         state.loading = false;
         state.courseData = null;
         state.error = payload as string;
@@ -63,5 +63,5 @@ export const courseSlice = createSlice({
   },
 });
 
-export const { updateError, clearMessage, resetCourseState } = courseSlice.actions;
-export default courseSlice;
+export const { updateError, clearMessage, resetCourseState } = projectSlice.actions;
+export default projectSlice;

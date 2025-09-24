@@ -1,7 +1,7 @@
 
 
-// export const URL="http://localhost:5555"; 
-export const URL="https://api.scitoracademy.com";
+// export const URL="http://localhost:1001"; 
+export const URL="https://api.brandbik.com";
 
  export const createAxiosConfig = (isFileUpload = false) => ({
     headers: {

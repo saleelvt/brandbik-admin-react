@@ -7,15 +7,15 @@ import { RootState } from "./reduxKit/store";
 import { Toaster } from 'react-hot-toast';
 
 
-import AddCourse from "./pages/course/AddCourse";
+import AddProject from "./pages/projects/AddProject";
 
 import SignIn from "./pages/AuthPages/SignIn";
+import ProjectList from "./pages/projects/listProjects";
 
-import UpdateCourse from "./pages/course/updateCourse";
  
 
 import NotFound from "./pages/OtherPage/NotFound";
-import CoursesList from "./pages/course/CoursesList";
+
 
 
 export const App: React.FC = React.memo(() => {
@@ -36,21 +36,21 @@ export const App: React.FC = React.memo(() => {
         <Route element={<AppLayout />}>
           <Route
             path="/"
-            element={isLogged ? <CoursesList /> : <Navigate to="/login" />}
+            element={isLogged ? <ProjectList /> : <Navigate to="/login" />}
           />
           <Route
             path="/add-Work"
-            element={isLogged ? <AddCourse /> : <Navigate to="/login" />}
+            element={isLogged ? <AddProject /> : <Navigate to="/login" />}
           />
         
           <Route
             path="/works-list"
-            element={isLogged ? <CoursesList /> : <Navigate to="/login" />}
+            element={isLogged ? <ProjectList /> : <Navigate to="/login" />}
           /> 
-          <Route
+          {/* <Route
             path="/updateWork"
             element={isLogged ? <UpdateCourse /> : <Navigate to="/login" />}
-          />
+          /> */}
         
         </Route>
 
