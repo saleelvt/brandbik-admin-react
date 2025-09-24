@@ -30,7 +30,7 @@ const SignInForm: React.FC = () => {
       
 
       if (response?.success) {
-        navigate("/add-course");
+        navigate("/works-list");
       } else {
         console.error("Login failed:", response);
       }
@@ -139,7 +139,7 @@ const SignInForm: React.FC = () => {
                 to="/signup"
                 className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
               >
-                Sign Up
+                Sign Up 
               </Link>
             </p>
           </div>

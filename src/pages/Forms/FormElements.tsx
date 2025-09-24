@@ -22,7 +22,7 @@ export default function FormElements() {
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
         <div className="space-y-6">
           <DefaultInputs />
-          <SelectInputs />
+          <SelectInputs /> 
           <TextAreaInput />
           <InputStates /> 
         </div>
