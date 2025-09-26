@@ -44,10 +44,7 @@ export default function ProjectList() {
     }
   };
 
-  const handleUpdateProject = (id: string) => {
-    // navigate("/updateProject", { state: { id } }); // Add this back in your actual component
-    console.log("Update project:", id);
-  };
+
 
   const toggleExpandProject = (projectId: string) => {
     setExpandedProject(expandedProject === projectId ? null : projectId);
@@ -134,12 +131,12 @@ export default function ProjectList() {
                       >
                         {expandedProject === project._id ? "Collapse" : "Expand"}
                       </button>
-                      <button
+                      {/* <button
                         onClick={() => handleUpdateProject(project._id)}
                         className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition-colors"
                       >
                         Edit
-                      </button>
+                      </button> */}
                       <button
                         onClick={() => handleDeleteProject(project._id, project.projectName)}
                         disabled={deleteLoading === project._id}
@@ -165,6 +162,11 @@ export default function ProjectList() {
                     <h4 className="font-semibold text-gray-700 mb-2">Industry & Service:</h4>
                     <p className="text-gray-800 mb-1">{project.industryName} - {project.service}</p>
                     <p className="text-gray-600" dir="rtl">{project.industryNameAr} - {project.serviceAr}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-red-700 mb-2">Category</h4>
+                    <p className="text-gray-800 mb-1">{project.category} </p>
+                    <p className="text-gray-600" >{project.categoryAr} </p>
                   </div>
                 </div>
 

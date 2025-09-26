@@ -19,6 +19,8 @@ interface ProjectData {
   industryNameAr: string;
   service: string;
   serviceAr: string;
+  category: string;
+  categoryAr: string;
   scopDiscription: string;
   scopDiscriptionAr: string;
   challenges: string;
@@ -41,6 +43,8 @@ const initialProject: ProjectData = {
   industryNameAr: "",
   service: "",
   serviceAr: "",
+  category: "",
+  categoryAr: "",
   scopDiscription: "",
   scopDiscriptionAr: "",
   challenges: "",
@@ -48,7 +52,7 @@ const initialProject: ProjectData = {
   servicesProvided: [],
   servicesProvidedAr: [],
   images: [],
-};
+}; 
 
 export default function AddProject() {
   const navigate = useNavigate();
@@ -241,6 +245,8 @@ export default function AddProject() {
     if (!project.industryNameAr.trim()) newErrors.industryNameAr = "Industry name (Arabic) is required";
     if (!project.service.trim()) newErrors.service = "Service is required";
     if (!project.serviceAr.trim()) newErrors.serviceAr = "Service (Arabic) is required";
+    if (!project.category.trim()) newErrors.category = "Category is required";
+    if (!project.categoryAr.trim()) newErrors.categoryAr = "Category (Arabic) is required";
     if (!project.scopDiscription.trim()) newErrors.scopDiscription = "Scope description is required";
     if (!project.scopDiscriptionAr.trim()) newErrors.scopDiscriptionAr = "Scope description (Arabic) is required";
     if (!project.challenges.trim()) newErrors.challenges = "Challenges are required";
@@ -277,6 +283,8 @@ export default function AddProject() {
       formData.append('industryNameAr', project.industryNameAr);
       formData.append('service', project.service);
       formData.append('serviceAr', project.serviceAr);
+      formData.append('category', project.category);
+      formData.append('categoryAr', project.categoryAr);
       formData.append('scopDiscription', project.scopDiscription);
       formData.append('scopDiscriptionAr', project.scopDiscriptionAr);
       formData.append('challenges', project.challenges);
@@ -301,8 +309,6 @@ export default function AddProject() {
 
       const result = await dispatch(adminAddProjectAction(formData)).unwrap();
 
-
-
       console.log("Project adding result:", result);
       
       if (result.success) {
@@ -325,10 +331,6 @@ export default function AddProject() {
       }
     }
   };
-
-
-
-
 
   useEffect(()=>{
     const data = dispatch(adminGetProjects())
@@ -498,6 +500,42 @@ export default function AddProject() {
                 dir="rtl"
               />
               {errors.serviceAr && <p className="text-red-500 text-sm mt-1">{errors.serviceAr}</p>}
+            </div>
+
+            {/* Category */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Category (English) *
+              </label>
+              <input
+                type="text"
+                name="category"
+                value={project.category}
+                onChange={handleInputChange}
+                className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  errors.category ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="Enter category in English"
+              />
+              {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Category (Arabic) *
+              </label>
+              <input
+                type="text"
+                name="categoryAr"
+                value={project.categoryAr}
+                onChange={handleInputChange}
+                className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  errors.categoryAr ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="Enter category in Arabic"
+                dir="rtl"
+              />
+              {errors.categoryAr && <p className="text-red-500 text-sm mt-1">{errors.categoryAr}</p>}
             </div>
           </div>
 
