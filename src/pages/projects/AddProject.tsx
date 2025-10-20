@@ -230,44 +230,13 @@ export default function AddProject() {
     }));
   };
 
-  // Form validation
-  const validateForm = (): boolean => {
-    const newErrors: Partial<Record<keyof ProjectData, string>> = {};
 
-    // Required fields validation
-    if (!project.projectName.trim()) newErrors.projectName = "Project name is required";
-    if (!project.projectNameAr.trim()) newErrors.projectNameAr = "Project name (Arabic) is required";
-    if (!project.description.trim()) newErrors.description = "Description is required";
-    if (!project.descriptionAr.trim()) newErrors.descriptionAr = "Description (Arabic) is required";
-    if (!project.heading.trim()) newErrors.heading = "Heading is required";
-    if (!project.headingAr.trim()) newErrors.headingAr = "Heading (Arabic) is required";
-    if (!project.industryName.trim()) newErrors.industryName = "Industry name is required";
-    if (!project.industryNameAr.trim()) newErrors.industryNameAr = "Industry name (Arabic) is required";
-    if (!project.service.trim()) newErrors.service = "Service is required";
-    if (!project.serviceAr.trim()) newErrors.serviceAr = "Service (Arabic) is required";
-    if (!project.category.trim()) newErrors.category = "Category is required";
-    if (!project.categoryAr.trim()) newErrors.categoryAr = "Category (Arabic) is required";
-    if (!project.scopDiscription.trim()) newErrors.scopDiscription = "Scope description is required";
-    if (!project.scopDiscriptionAr.trim()) newErrors.scopDiscriptionAr = "Scope description (Arabic) is required";
-    if (!project.challenges.trim()) newErrors.challenges = "Challenges are required";
-    if (!project.challengesAr.trim()) newErrors.challengesAr = "Challenges (Arabic) are required";
-    if (!project.mainImg) newErrors.mainImg = "Main image is required";
-    if (!project.backGroundImage) newErrors.backGroundImage = "Background image is required";
-    if (project.servicesProvided.length === 0) newErrors.servicesProvided = "At least one service must be provided";
-    if (project.servicesProvidedAr.length === 0) newErrors.servicesProvidedAr = "At least one service (Arabic) must be provided";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
 
   // Handle form submission
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    if (!validateForm()) {
-      toast.error("Please fill in all required fields");
-      return;
-    }
+   
 
     try {
       const formData = new FormData();

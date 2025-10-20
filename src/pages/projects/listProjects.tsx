@@ -11,7 +11,7 @@ export default function ProjectList() {
   const { loading } = useSelector((state: RootState) => state.project);
   
   const [projects, setProjects] = useState<any[]>([]);
-  const [deleteLoading, setDeleteLoading] = useState<string>("");
+  const [deleteLoading, setDeleteLoading] = useState<string>(""); 
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
 
   useEffect(() => {
@@ -74,23 +74,13 @@ export default function ProjectList() {
         <h2 className="text-2xl md:text-3xl font-extrabold text-blue-700 tracking-tight">
           All Projects ({projects?.length || 0})
         </h2>
-        <a
-          href="/add-Work"
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-blue-700 transition-colors"
-        >
-          + Add New Project
-        </a>
+    
       </div>
 
       {!projects || projects.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-gray-500 text-lg mb-4">No projects found</div>
-          <a
-            href="/add-Work"
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-          >
-            Create Your First Project
-          </a>
+         
         </div>
       ) : (
         <div className="space-y-8">
